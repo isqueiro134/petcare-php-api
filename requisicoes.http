@@ -1,0 +1,107 @@
+### Variáveis globais
+@baseUrl = http://localhost/php_api
+@token = cole_aqui_o_token_retornado_no_login
+
+# ==============================================================================
+# 1. AUTENTICAÇÃO
+# ==============================================================================
+
+### Login do usuário (Professor)
+# @name login
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+  "email": "professor@petcare.com",
+  "senha": "password"
+}
+
+### Logout (invalidar token)
+POST {{baseUrl}}/logout
+Authorization: Bearer {{token}}
+
+
+# ==============================================================================
+# 2. TUTORES (CRUD)
+# ==============================================================================
+
+### Listar todos os tutores
+GET {{baseUrl}}/tutores
+Authorization: Bearer {{token}}
+
+### Buscar tutor por ID
+GET {{baseUrl}}/tutores/1
+Authorization: Bearer {{token}}
+
+### Cadastrar novo tutor
+POST {{baseUrl}}/tutores
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Lucas Almeida",
+  "email": "lucas.almeida@exemplo.com"
+}
+
+### Atualizar tutor existente
+PUT {{baseUrl}}/tutores/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Maria Silva Oliveira",
+  "email": "maria.silva@exemplo.com"
+}
+
+### Excluir tutor
+DELETE {{baseUrl}}/tutores/5
+Authorization: Bearer {{token}}
+
+
+# ==============================================================================
+# 3. PETS (CRUD)
+# ==============================================================================
+
+### Listar todos os pets
+GET {{baseUrl}}/pets
+Authorization: Bearer {{token}}
+
+### Buscar pet por ID
+GET {{baseUrl}}/pets/1
+Authorization: Bearer {{token}}
+
+### Listar pets de um tutor específico (caso tenha essa rota)
+GET {{baseUrl}}/tutores/1/pets
+Authorization: Bearer {{token}}
+
+### Cadastrar novo pet
+POST {{baseUrl}}/pets
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Paçoca",
+  "especie": "Cachorro",
+  "raca": "Caramelo (SRD)",
+  "data_nasc": "2023-04-12",
+  "peso_kg": 14.50,
+  "tutor_id": 1
+}
+
+### Atualizar pet existente
+PUT {{baseUrl}}/pets/1
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "nome": "Thor",
+  "especie": "Cachorro",
+  "raca": "Golden Retriever",
+  "data_nasc": "2021-05-14",
+  "peso_kg": 33.10,
+  "tutor_id": 1
+}
+
+### Excluir pet
+DELETE {{baseUrl}}/pets/10
+Authorization: Bearer {{token}}
