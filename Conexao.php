@@ -5,9 +5,9 @@
         public static function getConnection() : PDO
         {
             $host = "127.0.0.1";
-            $dbname = "exemplo";
+            $dbname = "petcare-isaque";
             $user = "root";
-            $pass = "";
+            $pass = "ceub123456";
             $port = "3306";
 
             $dns = "mysql:host={$host};
